@@ -1,19 +1,12 @@
 from rest_framework import serializers
-from .models import Content, Score
+from .models import Content
 
 
-class ContentSerializer(serializers.ModelSerializer):
+class ListOfContentsSerializer(serializers.ModelSerializer):
+    average_score = serializers.DecimalField(max_digits=32, decimal_places=8)
+    score_count = serializers.IntegerField()
+    user_score = serializers.IntegerField(allow_null=True)
+
     class Meta:
         model = Content
-        fields = ['id', 'title', 'body']
-
-
-class ScoreSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Score
-        fields = ['content', 'score', 'comment']
-
-    def validate_score(self, value):
-        if not (1 <= value <= 5):
-            raise serializers.ValidationError("Score must be between 1 and 5.")
-        return value
+        fields = ['id', 'title', 'body', 'average_score', 'score_count', 'user_score']

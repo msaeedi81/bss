@@ -25,6 +25,9 @@ class Score(BaseModel):
             models.Index(fields=['user', 'content'])
         ]
 
+    def __str__(self):
+        return f'{self.user.username} rated {self.content}'
+
     def clean(self):
         if self.score > 5 or self.score < 0:
             raise ValueError('score is out of range')
