@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import ContentListView, SubmitScoreView
+from .views import ContentWithUserScoreListView, ScoreContentView
 
 urlpatterns = [
-    path('content/', ContentListView.as_view(), name='content-list'),
-    path('score/', SubmitScoreView.as_view(), name='submit-score'),
+    path('content/list/', ContentWithUserScoreListView.as_view(), name='content_with_user_scores'),
+    path('content/score/', ScoreContentView.as_view(), name='score-content'),
 ]
