@@ -22,7 +22,8 @@ class Score(BaseModel):
     class Meta:
         unique_together = [['user', 'content']]
         indexes = [
-            models.Index(fields=['user', 'content'])
+            models.Index(fields=['user', 'content']),
+            models.Index(fields=['created', 'content'])
         ]
 
     def __str__(self):
