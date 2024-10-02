@@ -7,3 +7,5 @@ PyJWT==2.9.0
 python-decouple==3.4
 sqlparse==0.5.1
 typing_extensions==4.12.2
+
+locust~=2.31.8

@@ -42,7 +42,7 @@ class ScoreContentView(APIView):
             return Response({'error': 'Score must be between 1 and 5'}, status=status.HTTP_400_BAD_REQUEST)
 
         recent_scores = Score.objects.filter(content_id=content_id,
-                                             timestamp__gte=datetime.now(tz=timezone.utc) - timedelta(hours=1)).count()
+                                             created__gte=datetime.now(tz=timezone.utc) - timedelta(hours=1)).count()
 
         if recent_scores > 50:
             return Response({'error': 'Too many ratings in a short period. Please try again later.'},
